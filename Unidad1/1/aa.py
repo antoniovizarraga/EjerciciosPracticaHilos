@@ -1,20 +1,21 @@
 from threading import Thread
+from time import sleep
+from random import randint
 
 
 class Hilo(Thread):
     def __init__(self, nombre):
         Thread.__init__(self)
         self.name = nombre
-        self.contador = 0
 
     def run(self):
         while True:
-            if self.contador==0:
-                print(f"Soy el hilo {self.name} y voy a empezar mi trabajo")
-            else:
-                print(f"Soy el hilo {self.name} y he terminado mi hora")
+            print(f"Soy {self.name} y estoy trabajando")
+            sleep(randint(1,10))
+            print(f"Soy {self.name} y he terminado de trabajar")
 
 if __name__ == "__main__":
-    hilos = [Hilo(i) for i in range(5)]
+    nombres = ["Pepe", "Viyuela", "Amaro", "Pepelu", "Notch"]
+    hilos = [Hilo(i) for i in nombres]
     for hilo in hilos:
         hilo.start()
